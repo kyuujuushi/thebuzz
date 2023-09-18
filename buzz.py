@@ -2,7 +2,7 @@
 import requests
 
 
-url = 'https://www.eventbriteapi.com/v3/users/me/?token=OZKM24XDZI6IXQAVITUF'
+url = 'https://www.eventbriteapi.com/v3/users/me/?token=4B2WKIGMY7VW2T356IXQ'
 
 ##function for intergrate pyscript with website (KIR)
 #def pyscript_integration():

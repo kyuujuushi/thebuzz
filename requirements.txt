@@ -1,0 +1,9 @@
+certifi==2023.7.22
+charset-normalizer==3.2.0
+fanstatic==1.4
+idna==3.4
+js==1.0
+pycurl==7.45.2
+requests==2.31.0
+urllib3==2.0.4
+WebOb==1.8.7

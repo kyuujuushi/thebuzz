@@ -17,39 +17,38 @@
     
     <header>
         <h2>The Buzz</h2>
-      </header>
-      
-      <section>
+    </header>
+    
+    <section>
         <nav>
-          <ul>
-            <!---Weather Widget-->
-            <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige" >BOSTON WEATHER</a>
-<script>
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-</script>
-          </ul>
+            <ul>
+                <!---Weather Widget-->
+                <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+                <script>
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+            </ul>
         </nav>
         
         <article>
-          <h1>calendar_test</h1>
-          <p> some events
-</p>
-<h2>{% for post in posts %}
-        <a href="#">
-            <h2>{{ post['title'] }}</h2>
-        </a>
-        <span class="badge badge-primary">{{ post['created'] }}</span>
-        <hr>
-    {% endfor %}</h2>
-          <p> Another event</p>
+            <h1>Events</h1>
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <a href="#">
+                            <h2>{{ post['event_name'] }}</h2>
+                        </a>
+                        <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                        <p>Date: {{ post['date'] }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p> Another event</p>
         </article>
-      </section>
-      
-      <footer>
+    </section>
+    
+    <footer>
         <p>Footer</p>
-      </footer>
-    
-    
-    
+    </footer>
 </body>
 </html>

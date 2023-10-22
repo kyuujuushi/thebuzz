@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--the pyscript thingy-->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+
+    <!--CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>The Buzz</title>
+</head>
+<body>
+    <py-script src="calendar_test.py"></py-script>
+    
+    <header>
+        <h2>The Buzz</h2>
+      </header>
+      
+      <section>
+        <nav>
+          <ul>
+            <!---Weather Widget-->
+            <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige" >BOSTON WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+          </ul>
+        </nav>
+        
+        <article>
+          <h1>calendar_test</h1>
+          <p> some events
+</p>
+<h2>{% for post in posts %}
+        <a href="#">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <hr>
+    {% endfor %}</h2>
+          <p> Another event</p>
+        </article>
+      </section>
+      
+      <footer>
+        <p>Footer</p>
+      </footer>
+    
+    
+    
+</body>
+</html>

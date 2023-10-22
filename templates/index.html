@@ -32,17 +32,19 @@
         
         <article>
             <h1>Events</h1>
-            <ul>
+            <table>
                 {% for post in posts %}
-                    <li>
-                        <a href="#">
-                            <h2>{{ post['event_name'] }}</h2>
-                        </a>
-                        <p>Ticket Range: {{ post['ticket_range'] }}</p>
-                        <p>Date: {{ post['date'] }}</p>
-                    </li>
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <h2>{{ post['event_name'] }}</h2>
+                            </a>
+                            <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                            <p>Date: {{ post['date'] }}</p>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </ul>
+            </table>
             <p> Another event</p>
         </article>
     </section>

@@ -66,3 +66,9 @@
       height: auto;
     }
   }
+
+  div{
+    border-style: solid;
+    border: black;
+    border-width: 0.1em;
+  }

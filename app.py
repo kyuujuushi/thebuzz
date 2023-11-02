@@ -1,6 +1,5 @@
 import sqlite3
 from flask import Flask, render_template
-<<<<<<< HEAD
 from icalendar import Calendar, Event, vText
 from datetime import datetime
 from pathlib import Path
@@ -26,11 +25,6 @@ def mk_cal (name, date):
     f.close()
     '''
 
-=======
-
-app = Flask(__name__)
-
->>>>>>> 6b78472 (test L)
 def get_db_connection():
     conn = sqlite3.connect('events.db')
     conn.row_factory = sqlite3.Row
@@ -41,12 +35,9 @@ def index():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM processed_events').fetchall()
     conn.close()
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 6b78472 (test L)
     return render_template('index.html', posts=posts)
 
 if __name__ == '__main__':

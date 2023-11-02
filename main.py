@@ -5,6 +5,7 @@ api_key = "P8ahPHp6GiDVgvIVSzqV2l3gFGxLAp3d"
 base_url = "https://app.ticketmaster.com/discovery/v2/events"
 endpoint=".json"
 city='Boston'
+
 test_event_id ="vvG17Z9cLmB6uY"
 
 url = f"{base_url}{endpoint}?apikey={api_key}&countryCode=US&city={city}"
@@ -36,12 +37,21 @@ def process_events(events):
         dates = event.get('dates', {})
         start_date = dates.get('start', {}).get('localDate', 'N/A')
 
+        # get images
+        images = event.get('images', [])
+        image_urls = [image.get('url') for image in images]
+
+        # get event URL
+        event_url = event.get('url')
+
         # Creating a dictionary with the extracted information
         processed_event = {
             'event_id': event_id,
             'event_name': event_name,
             'ticket_range': ticket_range,
             'date': start_date,
+            'image_urls': image_urls,  
+            'event_url': event_url,   
         }
 
         # Appending the dictionary to the list
@@ -60,7 +70,9 @@ def create_database():
             event_id TEXT PRIMARY KEY,
             event_name TEXT,
             ticket_range TEXT,
-            date TEXT
+            date TEXT,
+            image_urls TEXT,
+            event_url TEXT
         )
     ''')
     
@@ -75,9 +87,9 @@ def update_database(processed_events):
 
     for event in processed_events:
         cursor.execute('''
-            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date)
-            VALUES (?, ?, ?, ?)
-        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date']))
+            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date, image_urls, event_url)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'],json.dumps(event['image_urls']), event['event_url']))
 
     connection.commit()
     connection.close()

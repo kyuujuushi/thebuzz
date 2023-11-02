@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
 
+<<<<<<< HEAD
     <!--CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <title>The Buzz</title>
@@ -54,3 +55,76 @@
     </footer>
 </body>
 </html>
+=======
+  <!--CSS-->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>The Buzz</title>
+      
+    <!-- add icon link -->
+      <link rel = "icon" href =  
+      "images/beeLogoYellowAlphatransp.png 
+              type = "image/x-icon"/> 
+</head>
+<body>
+    <py-script src="calendar_test.py"></py-script>
+
+    <!--Header-->
+    <header>
+    <div id="logoImage" align="left" >
+      <img src="images/beeLogoYellowAlphatransp.png" 
+      style="float:left;width:62px;height:62px;"  alt=""/>
+    </div>
+        <h2>The Buzz</h2>
+      </header>
+      
+      <section>
+        <!--Nav Bar-->
+        <nav id="top">
+          <ul>
+            <li><a class="active" href="#home">Home</a></li>
+            <li><a href="#Filter">Filter</a></li>
+            <li><a href="#About Us">Abous Us</a></li>
+          </ul>
+        </nav>
+
+        <!--Event List Section-->
+       <article id="eventlist">
+        <h1>Events</h1>
+          <table>
+              {% for post in posts %}
+                  <tr>
+                      <td>
+                          <a href="#">
+                              <h2>{{ post['event_name'] }}</h2>
+                          </a>
+                          <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                          <p>Date: {{ post['date'] }}</p>
+                      </td>
+                  </tr>
+              {% endfor %}
+          </table>
+          </article>
+
+          <!--Calendar section-->
+        <article id="calendar">
+          <h1>calendar_test</h1>
+          <p>Some event</p>
+          <p> Another event</p>
+          <!---Weather Widget-->
+          <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige" >BOSTON WEATHER</a>
+          <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+          </script>
+        </article>
+      </section>
+
+      <!--Footer-->
+      <footer>
+        <p>Footer</p>
+      </footer>
+    
+    
+    
+</body>
+</html>
+>>>>>>> 6b78472 (test L)

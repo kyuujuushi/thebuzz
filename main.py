@@ -44,6 +44,14 @@ def process_events(events):
         # get event URL
         event_url = event.get('url')
 
+        # get genre name
+        genre_name = None
+        classifications = event.get('classifications', [])
+        for classification in classifications:
+            if classification.get('primary'):
+                genre_name = classification['genre']['name']
+                break
+
         # Creating a dictionary with the extracted information
         processed_event = {
             'event_id': event_id,
@@ -52,6 +60,7 @@ def process_events(events):
             'date': start_date,
             'image_urls': image_urls,  
             'event_url': event_url,   
+            'genre_name': genre_name,
         }
 
         # Appending the dictionary to the list
@@ -72,7 +81,8 @@ def create_database():
             ticket_range TEXT,
             date TEXT,
             image_urls TEXT,
-            event_url TEXT
+            event_url TEXT,
+            genre_name TEXT
         )
     ''')
     
@@ -87,9 +97,9 @@ def update_database(processed_events):
 
     for event in processed_events:
         cursor.execute('''
-            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date, image_urls, event_url)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'],json.dumps(event['image_urls']), event['event_url']))
+            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date, image_urls, event_url, genre_name)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'],json.dumps(event['image_urls']), event['event_url'],event['genre_name']))
 
     connection.commit()
     connection.close()

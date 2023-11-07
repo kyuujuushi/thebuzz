@@ -1,12 +1,29 @@
 import sqlite3
 from flask import Flask, render_template
+from icalendar import Calendar, Event, vText
+from datetime import datetime
+from pathlib import Path
+import os
+import pytz
 
 app = Flask(__name__)
 
-
-"""@app.route('/')
-def index():
-    return render_template('index.html')"""
+#add location later
+def mk_cal (name, date):
+    # init the calendar
+    cal = Calendar()
+    
+    # event stuff
+    event = Event()
+    event.add('name', name)
+    #date needs to be converted from string to numbers
+    event.add('dtstart', datetime(2023, 10, 31, 20, 0, 0, tzinfo=pytz.utc))
+    cal.add_component(event)
+    '''
+    f = open("testCal.ics", "wb")
+    f.write(cal.to_ical())
+    f.close()
+    '''
 
 def get_db_connection():
     conn = sqlite3.connect('events.db')
@@ -18,4 +35,10 @@ def index():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM processed_events').fetchall()
     conn.close()
+
+
+
     return render_template('index.html', posts=posts)
+
+if __name__ == '__main__':
+    app.run()

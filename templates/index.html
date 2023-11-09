@@ -49,6 +49,11 @@
                             <!--<p>Image {{ post['image_urls'] }}</p>-->
                             <!--<p>url {{ post['event_url'] }}</p>-->
                             <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                            
+                            <form>
+                                <input type="submit" name="Get Calendar" value="getCal">
+                            </form>
+                            
                         </td>
                     </tr>
                 {% endfor %}

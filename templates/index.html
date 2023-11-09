@@ -4,36 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--the pyscript thingy-->
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+    <!-- The pyscript thingy -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
-    <!--CSS-->
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>The Buzz</title>
+
+    <!-- Add icon link -->
+    <link rel="icon" href="images/beeLogo_small_alpha.png" type="image/x-icon">
+
 </head>
 <body>
     <py-script src="calendar_test.py"></py-script>
-    
-    <header>
+
+    <!-- Header -->
+    <div class="header">
+        <div id="logoImage" align="left">
+            <img src="images/beeLogoYellowAlphatransp.png" style="float:left;width:62px;height:62px;" alt="" />
+        </div>
         <h2>The Buzz</h2>
-    </header>
-    
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="navtop">
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="#Filter">Filter</a></li>
+            <li><a href="about us.html">About Us</a></li>
+        </ul>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="primary">Event</th>
+                <th class="primary">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>table</td>`
+                <td>which is the main container.</td>
+            </tr>
+            <tr>
+                <td>td</td>
+                <td>used to create data cells.</td>
+            </tr>
+            <tr>
+                <td>tr</td>
+                <td>represents the rows.</td>
+            </tr>
+        </tbody>
+    </table>
+
     <section>
         <nav>
             <ul>
-                <!---Weather Widget-->
-                <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+                <!-- Weather Widget -->
+                <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON"
+                    data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
                 <script>
                     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                 </script>
             </ul>
         </nav>
-        
+
         <article>
             <h1>Events</h1>
             <ul>
                 {% for post in posts %}
+<<<<<<< Updated upstream
                     <li>
                         <a href="#">
                             <h2>{{ post['event_name'] }}</h2>
@@ -44,11 +86,29 @@
                 {% endfor %}
             </ul>
             <p> Another event</p>
+=======
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <h2>{{ post['event_name'] }}</h2>
+                            </a>
+                            <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                            <p>Date: {{ post['date'] }}</p>
+                            <!--<p>Image {{ post['image_urls'] }}</p>-->
+                            <!--<p>url {{ post['event_url'] }}</p>-->
+                            <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Another event</p>
+>>>>>>> Stashed changes
         </article>
     </section>
-    
-    <footer>
-        <p>Footer</p>
-    </footer>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>2023</p>
+    </div>
 </body>
 </html>

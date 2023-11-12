@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from icalendar import Calendar, Event
 from datetime import datetime
 from pathlib import Path
@@ -50,6 +50,13 @@ def index():
     if request.method == 'POST':
         if request.form['Get Calendar'] == 'getCal':
             mk_cal(eventname, eventdate)
+
+    #redirecting with flask requires this code. the normal way of
+    #redirecting doesn't work or else you get a 404 error which is odd but ok
+    if request.method == 'GET':
+        if request.form['aboutUs'] == 'About Us':
+            redirect(url_for('aboutus.html'))
+            render_template('aboutus.html', posts=posts)
 
     return render_template('index.html', posts=posts)
 

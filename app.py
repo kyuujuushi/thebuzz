@@ -54,15 +54,14 @@ def index():
     #redirecting with flask requires this code. the normal way of
     #redirecting doesn't work or else you get a 404 error which is odd but ok
     '''
-    commenting this out because this breaks the site and causes a 400 error
     this is my attempt to redirect from one html file to another using flask
     i'll figure this out later bc its almost 9 pm and im tired ;-;
     --- kir
-    if request.method == 'GET':
+    '''
+    if request.method == 'POST':
         if request.form['aboutUs'] == 'About Us':
             redirect(url_for('aboutus.html'))
             render_template('aboutus.html', posts=posts)
-    '''
 
     return render_template('index.html', posts=posts)
 

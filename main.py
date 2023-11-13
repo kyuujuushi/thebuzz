@@ -38,8 +38,15 @@ def process_events(events):
         start_date = dates.get('start', {}).get('localDate', 'N/A')
 
         # get images
+        """images = event.get('images', [])
+        image_urls = [image.get('url') for image in images]"""
         images = event.get('images', [])
-        image_urls = [image.get('url') for image in images]
+        image_urls = None
+        for image in images:
+            if image.get('ratio') == '4_3':
+                image_urls = image.get('url')
+                break
+
 
         # get event URL
         event_url = event.get('url')

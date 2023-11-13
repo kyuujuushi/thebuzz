@@ -17,7 +17,6 @@
 
 </head>
 <body>
-    <py-script src="calendar_test.py"></py-script>
 
     <!-- Header -->
     <div class="header">
@@ -33,9 +32,7 @@
             <li><a class="active" href="index.html">Home</a></li>
             <li><a href="#Filter">Filter</a></li>
             <li>
-                <form>
-                    <input type="submit" name="aboutUs" value="About Us">
-                </form>
+                <a href="{{ url_for('about')  }}">About Us</a>
             </li>
         </ul>
     </div>

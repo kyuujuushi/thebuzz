@@ -39,6 +39,7 @@
             </li>
         </ul>
     </div>
+<<<<<<< HEAD
     <article>
         <h1>Events</h1>
         <ul>
@@ -63,6 +64,40 @@
         <p>Another event</p>
     </article>
     
+=======
+        <article>
+            <h1>Events</h1>
+            <table>
+                {% for post in posts %}
+                    <tr>
+                        <td>
+                            <a href="#">
+                                <h2>{{ post['event_name'] }}</h2>
+                            </a>
+                            <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                            <p>Date: {{ post['date'] }}</p>
+<<<<<<< HEAD
+=======
+                            <!--<p>Image {{ post['image_urls'] }}</p>-->
+                            <!--<p>url {{ post['event_url'] }}</p>-->
+                            <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                            
+                            <form>
+                                <input type="submit" name="Get Calendar" value="getCal">
+                            </form>
+                            
+>>>>>>> augustus
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+<<<<<<< HEAD
+            <p> Another event</p>
+=======
+            <p>Another event</p>
+>>>>>>> augustus
+        </article>
+>>>>>>> origin/long
         <section>
             <nav>
                 <ul>

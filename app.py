@@ -8,6 +8,23 @@ import pytz
 
 app = Flask(__name__)
 
+#add location later
+def mk_cal (name, date):
+    # init the calendar
+    cal = Calendar()
+    
+    # event stuff
+    event = Event()
+    event.add('name', name)
+    #date needs to be converted from string to numbers
+    event.add('dtstart', datetime(2023, 10, 31, 20, 0, 0, tzinfo=pytz.utc))
+    cal.add_component(event)
+    '''
+    f = open("testCal.ics", "wb")
+    f.write(cal.to_ical())
+    f.close()
+    '''
+
 def get_db_connection():
     conn = sqlite3.connect('events.db')
     conn.row_factory = sqlite3.Row

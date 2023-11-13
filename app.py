@@ -68,10 +68,6 @@ def index():
         if request.form['Get Calendar'] == 'getCal':
             mk_cal(eventname, eventdate)
 
-    # Fetch the first 5 events from the database
-    events = Event.query.limit(5).all()
-    return render_template('index.html', events=events)
-
     #redirecting with flask requires this code. the normal way of
     #redirecting doesn't work or else you get a 404 error which is odd but ok
     '''

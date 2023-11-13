@@ -42,31 +42,24 @@
                 {% for post in posts %}
                     <tr>
                         <td>
-                            <a href="#">
+                            <a href="{{ post['event_url'] }}">
                                 <h2>{{ post['event_name'] }}</h2>
                             </a>
                             <p>Ticket Range: {{ post['ticket_range'] }}</p>
                             <p>Date: {{ post['date'] }}</p>
-<<<<<<< HEAD
-=======
                             <!--<p>Image {{ post['image_urls'] }}</p>-->
                             <!--<p>url {{ post['event_url'] }}</p>-->
-                            <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
-                            
+                            <!--<a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                            -->
                             <form>
                                 <input type="submit" name="Get Calendar" value="getCal">
                             </form>
-                            
->>>>>>> augustus
+                            <img src="{{ post['image_urls']|replace('"', '') }}"
                         </td>
                     </tr>
                 {% endfor %}
             </table>
-<<<<<<< HEAD
-            <p> Another event</p>
-=======
             <p>Another event</p>
->>>>>>> augustus
         </article>
         <section>
             <nav>

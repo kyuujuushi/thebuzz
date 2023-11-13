@@ -90,11 +90,13 @@ def create_database():
             image_urls TEXT,
             event_url TEXT,
             genre_name TEXT
+            
         )
     ''')
     
     connection.commit()
     connection.close()
+
 
 
 

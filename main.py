@@ -36,19 +36,12 @@ def process_events(events):
         dates = event.get('dates', {})
         start_date = dates.get('start', {}).get('localDate', 'N/A')
 
-        # New code to get image URL
-        images = event.get('images', [])
-        image_urls = []
-        for image in images:
-            image_urls.append(image.get('url', 'N/A'))
-
-        # Adding the image URL to the dictionary
+        # Creating a dictionary with the extracted information
         processed_event = {
             'event_id': event_id,
             'event_name': event_name,
             'ticket_range': ticket_range,
             'date': start_date,
-            'image_urls': image_urls,
         }
 
         # Appending the dictionary to the list
@@ -68,7 +61,6 @@ def create_database():
             event_name TEXT,
             ticket_range TEXT,
             date TEXT
-            image_urls TEXT
         )
     ''')
     
@@ -83,14 +75,12 @@ def update_database(processed_events):
 
     for event in processed_events:
         cursor.execute('''
-            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date, image_urls)
-            VALUES (?, ?, ?, ?, ?)
-        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'], json.dumps(event['image_urls'])))
+            INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date)
+            VALUES (?, ?, ?, ?)
+        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date']))
 
     connection.commit()
     connection.close()
-
-
 
 
 #=====================================================================================

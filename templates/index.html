@@ -17,7 +17,6 @@
 
 </head>
 <body>
-    <py-script src="calendar_test.py"></py-script>
 
     <!-- Header -->
     <div class="header">
@@ -33,12 +32,11 @@
             <li><a class="active" href="index.html">Home</a></li>
             <li><a href="#Filter">Filter</a></li>
             <li>
-                <form>
-                    <input type="submit" name="aboutUs" value="About Us">
-                </form>
+                <a href="{{ url_for('about')  }}">About Us</a>
             </li>
         </ul>
     </div>
+<<<<<<< HEAD
     <article>
         <h1>Events</h1>
         <ul>
@@ -63,6 +61,33 @@
         <p>Another event</p>
     </article>
     
+=======
+        <article>
+            <h1>Events</h1>
+            <table>
+                {% for post in posts %}
+                    <tr>
+                        <td>
+                            <a href="{{ post['event_url'] }}">
+                                <h2>{{ post['event_name'] }}</h2>
+                            </a>
+                            <p>Ticket Range: {{ post['ticket_range'] }}</p>
+                            <p>Date: {{ post['date'] }}</p>
+                            <!--<p>Image {{ post['image_urls'] }}</p>-->
+                            <!--<p>url {{ post['event_url'] }}</p>-->
+                            <!--<a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                            -->
+                            <form>
+                                <input type="submit" name="Get Calendar" value="getCal">
+                            </form>
+                            <img src="{{ post['image_urls']|replace('"', '') }}"
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Another event</p>
+        </article>
+>>>>>>> origin/long
         <section>
             <nav>
                 <ul>

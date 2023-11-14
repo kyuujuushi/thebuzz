@@ -16,6 +16,7 @@
     <link rel="icon" href="images/beeLogo_small_alpha.png" type="image/x-icon">
 
 </head>
+
 <body>
 
     <!-- Header -->
@@ -23,7 +24,9 @@
         <div id="logoImage" align="left">
             <img src="images/beeLogoYellowAlphatransp.png" style="float:left;width:62px;height:62px;" alt="" />
         </div>
-        <h2>The Buzz</h2>
+        
+        <h2>{% block title %}  The Buzz {% endblock %}</h2>
+        
     </div>
 
     <!-- Nav Bar -->
@@ -36,31 +39,33 @@
             </li>
         </ul>
     </div>
+<!--{%block content%}-->
         <article>
             <h1>Events</h1> 
             <table>
-                {% for post in posts %}
+                {% for event in events %}
                     <tr>
                         <td>
-                            <a href="{{ post['event_url'] }}">
-                                <h2>{{ post['event_name'] }}</h2>
+                            <a href="{{ event['event_url'] }}">
+                                <h2>{{ event['event_name'] }}</h2>
                             </a>
-                            <p>Ticket Range: {{ post['ticket_range'] }}</p>
-                            <p>Date: {{ post['date'] }}</p>
-                            <!--<p>Image {{ post['image_urls'] }}</p>-->
-                            <!--<p>url {{ post['event_url'] }}</p>-->
-                            <!--<a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
+                            <p>Ticket Range: {{ event['ticket_range'] }}</p>
+                            <p>Date: {{ event['date'] }}</p>
+                            <!--<p>Image {{ event['image_urls'] }}</p>-->
+                            <!--<p>url {{ event['event_url'] }}</p>-->
+                            <!--<a href="{{ event['event_url'] }}"><img src="{{ event['image_urls'] }}"></a>
                             -->
                             <form>
                                 <input type="submit" name="Get Calendar" value="getCal">
                             </form>
-                            <img src="{{ post['image_urls']|replace('"', '') }}"
+                            <img src="{{ event['image_urls']|replace('"', '') }}">
                         </td>
                     </tr>
-                {% endfor %}
+                    {% endfor %}
             </table>
             <p>Another event</p>
         </article>
+<!--{%endblock%}-->
         <section>
             <nav>
                 <ul>
@@ -74,6 +79,7 @@
             </nav>
 
     </section>
+    
 
     <!-- Footer -->
     <div class="footer">

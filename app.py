@@ -54,7 +54,7 @@ def mk_cal (name, date):
 def print_stuff():
     return 'hello motherfucker'
 
-@app.route('/')
+""" @app.route('/')
 
 def index():
 
@@ -87,7 +87,7 @@ def index():
     --- kir
     '''
 
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', posts=posts) """
 
 #WIP paginated (old) - Augustus
 """
@@ -109,5 +109,47 @@ if request.method == 'POST':
             redirect(url_for('aboutus.html'))
             render_template('aboutus.html', posts=posts)
 '''
+"""@app.route('/event')
+def test():
+    return render_template('event_pages.html')"""
+
+
+@app.route('/')
+def index():
+
+    return render_events_page(1)
+
+@app.route('/events/<int:page>')
+def events(page):
+    return render_events_page(page)
+
+def render_events_page(page):
+    per_page = 5  # Number of events per page
+
+    #connecting to the database and fetching the data
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Count total number of events, coount #rows
+    cursor.execute("SELECT COUNT(*) FROM processed_events")
+    total_events = cursor.fetchone()[0]
+#=======================================
+#don't add me about the math D:, the idea is we don't know how many pages we gona need for events, 
+# so this fomula basically caculate that
+    # Calculate the total number of pages
+    total_pages = (total_events + per_page - 1) // per_page
+
+    # Calculate the offset for the current page
+    offset = (page - 1) * per_page
+
+    # Fetch events for the current page
+    cursor.execute(f"SELECT * FROM processed_events LIMIT {per_page} OFFSET {offset}")
+    events = cursor.fetchall()
+#==================================================
+    conn.close()
+
+    return render_template('index.html', events=events, page=page, total_pages=total_pages)
+
+
 if __name__ == '__main__':
     app.run()

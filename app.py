@@ -14,7 +14,11 @@ def get_db_connection():
     return conn
 
 def mk_cal (name, date):
+    dateInt = []
     dateList = date.split("-")
+    for i in range(len(dateList)):
+        dateItem = int(dateList[i])
+        dateInt.append(dateItem)
 
     # init the calendar
     cal = Calendar()
@@ -23,7 +27,7 @@ def mk_cal (name, date):
     event = Event()
     event.add('name', name)
     #date is currently a dummy date will need to figure out later
-    event.add('dtstart', datetime(dateList[0], dateList[1], dateList[2]).date())
+    event.add('dtstart', datetime(dateInt[0], dateInt[1], dateInt[2]).date())
     cal.add_component(event)
     # commented out currently so that we'll later figure out file shit
     # making of the calendar file
@@ -54,9 +58,25 @@ def index():
     #eventname = "test"
     #eventdate = 0
 
+    # does this stupid thing gives me strings????
+    conn.row_factory = lambda cursor, row: row[0]
+
     #this calls mk_cal to make a .ics file for each event
-        
     
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT event_name FROM processed_events
+        """
+    )
+    eventname = cursor.fetchone()
+    cursor.execute(
+        """
+        SELECT date FROM processed_events
+        """
+    )
+    eventdate = cursor.fetchone()
+    mk_cal(eventname,eventdate)
     #closing of SQL
     conn.close()
     #redirecting with flask requires this code. the normal way of

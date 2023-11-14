@@ -5,28 +5,23 @@
   
   body {
     font-family: Arial, Helvetica, sans-serif;
-   
   }
   
   /* Style the header */
   .header {
-    background-color: #5b7c99;
-    padding: 20px;
+    background: linear-gradient(to bottom, black , goldenrod);
+    padding: 25px;
     text-align: center;
     font-size: 40px;
-    color: white;
-     
-  
+    color: goldenrod;
   }
   
-
  /*Event list section*/
-
   .leftcolumn{ 
     padding: 30px;
     width: 30%;
     display: block;
-    float: left ;
+    float: left;
   }
 
   /* calendar section*/
@@ -56,8 +51,8 @@
   .navtop {
     float: left;
     width: 100%;
-    background: #000000;
-    padding: 2px;
+    background: gray;
+    padding: 1px;
     overflow: hidden;
   }
 
@@ -67,14 +62,14 @@
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 15px 15px;
   text-decoration: none;
 }
 /* Change color on hover */
 .navtop a:hover {
-  background-color: #fde74c;
+  background-color: goldenrod;
   color: black;
-  border-radius:50%;
+  border-radius:1px;
 }
   /* Style the list inside the menu */
   .navtop ul {
@@ -84,12 +79,12 @@
 
   /*table style*/
   td, th {
-    border: 1px solid #999;
-    padding: 20px;
+    border: 5px solid black;
+    padding: 1px;
   }
   td{
-    background: gray;
-    color: white;
+    background: goldenrod;
+    color: black;
   }
   .primary{
     background-color: brown;

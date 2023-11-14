@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, redirect
 from icalendar import Calendar, Event
 from datetime import datetime
 from pathlib import Path
+# - Augustus
+#from flask_sqlalchemy import 
+# - Augustus
 import os
 import pytz
 
@@ -85,6 +88,15 @@ def index():
     '''
 
     return render_template('index.html', posts=posts)
+
+#WIP paginated (old) - Augustus
+"""
+
+    page =
+request.args.get ('page', 1,
+type=int)
+
+"""
 
 @app.route('/about')
 

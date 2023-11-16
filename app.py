@@ -29,11 +29,13 @@ def mk_cal (name, date):
     #date is currently a dummy date will need to figure out later
     event.add('dtstart', datetime(dateInt[0], dateInt[1], dateInt[2]).date())
     cal.add_component(event)
-    # commented out currently so that we'll later figure out file shit
+    
     # making of the calendar file
-    f = open("./calendars" + name + ".ics", "wb")
-    f.write(cal.to_ical())
-    f.close()
+    filename = os.path.join("./calendars", name + ".ics")
+    if os.path.exists(filename) == False:
+        f = open(filename, "wb")
+        f.write(cal.to_ical())
+        f.close()
 
 def print_stuff():
     return 'hello motherfucker'
@@ -69,14 +71,17 @@ def index():
         SELECT event_name FROM processed_events
         """
     )
-    eventname = cursor.fetchone()
+    eventname = cursor.fetchall()
     cursor.execute(
         """
         SELECT date FROM processed_events
         """
     )
-    eventdate = cursor.fetchone()
-    mk_cal(eventname,eventdate)
+    eventdate = cursor.fetchall()
+    
+    for i in range(len(eventname)):
+        mk_cal(eventname[i],eventdate[i])
+
     #closing of SQL
     conn.close()
     #redirecting with flask requires this code. the normal way of

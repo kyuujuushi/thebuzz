@@ -1,0 +1,137 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Style the header */
+  .header {
+    background: linear-gradient(to bottom,  black , goldenrod);
+    padding: 25px;
+    text-align: center;
+    font-size: 40px;
+    color: chocolate;
+  }
+  
+ /*Event list section*/
+  .leftcolumn{ 
+    padding: 30px;
+    width: 30%;
+    display: block;
+    float: left;
+  }
+
+  /* calendar section*/
+
+  .rightcolumn {
+    float: left;
+    padding: 20px;
+    width: 70%;
+    background-color: #ffffec;
+
+    
+  }
+
+/* Logo image setup*/
+  img#logoImage {
+    display: block;
+    width: 100%;
+    max-width: 100px;
+    margin: 0px auto;
+    position:fixed; 
+	  top:0; 
+	  left:0; 
+    cursor: pointer;
+ }
+
+  
+  /* Create two columns/boxes that floats next to each other */
+  .navtop {
+    float: left;
+    width: 100%;
+    background: gray;
+    padding: 1px;
+    overflow: hidden;
+  }
+
+  /* Style the topnav links */
+.navtop a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding-top: 15px 15px;
+  padding: 15px 15px;
+  text-decoration: none;
+}
+/* Change color on hover */
+.navtop a:hover {
+  background-color: goldenrod;
+  color: black;
+  border-radius:1px;
+}
+  /* Style the list inside the menu */
+  .navtop ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  /*table style*/
+  td, th {
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+  }
+  td{
+    background: goldenrod;
+    color: white;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
+  }
+  .primary{
+    background-color: red;
+    position: sticky;
+  }
+   th {
+    background: #ffc107;
+    color: white;
+    border-radius: 0;
+    top: 0;
+    padding: 10px;
+  }
+  tbody > tr:hover {
+    background-color: #ffc107;
+  }
+  
+  /* Clear floats after the columns */
+  .leftcolumn::after,.rightcolumn::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the footer */
+  .footer {
+    background-color: grey;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    clear: both;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
+   
+  
+  }
+  
+  /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+  @media (max-width: 600px) {
+    .navtop, .rightcolumn, .leftcolumn{
+      width: 100%;
+      height: auto;
+    }
+    
+  }
+
+  

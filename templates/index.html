@@ -42,7 +42,7 @@
 <!--{%block content%}-->
         <article>
             <h1>Events</h1> 
-            <table>
+            <table align="center">
                 {% for event in events %}
                     <tr>
                         <td>
@@ -60,6 +60,7 @@
                             </form>
                             <img src="{{ event['image_urls']|replace('"', '') }}">
                         </td>
+                        <th> ! </th>
                     </tr>
                     {% endfor %}
             </table>

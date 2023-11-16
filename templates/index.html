@@ -64,6 +64,17 @@
                     {% endfor %}
             </table>
             <p>Another event</p>
+            <!-- Pagination buttons -->
+    <div>
+        {% if show_previous %}
+            <a href="{{ url_for('events', page=page-1) }}"><button>Previous Page</button></a>
+        {% endif %}
+
+        {% if show_next %}
+            <a href="{{ url_for('events', page=page+1) }}"><button>Next Page</button></a>
+        {% endif %}
+    </div>
+    
         </article>
 <!--{%endblock%}-->
         <section>

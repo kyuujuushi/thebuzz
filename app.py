@@ -122,7 +122,7 @@ def render_events_page(page):
     cursor.execute("SELECT COUNT(*) FROM processed_events")
     total_events = cursor.fetchone()[0]
 #=======================================
-#don't add me about the math D:, the idea is we don't know how many pages we gona need for events, 
+#don't ask me about the math D:, the idea is we don't know how many pages we gona need for events, 
 # so this fomula basically caculate that
     # Calculate the total number of pages
     total_pages = (total_events + per_page - 1) // per_page
@@ -136,7 +136,12 @@ def render_events_page(page):
 #==================================================
     conn.close()
 
-    return render_template('index.html', events=events, page=page, total_pages=total_pages)
+    # calculate to show or not Previous Page button
+    show_previous = page > 1
+    # calculate to show the Next Page button
+    show_next = page < total_pages
+
+    return render_template('index.html', events=events, page=page, total_pages=total_pages,show_previous=show_previous, show_next=show_next)
 
 
 if __name__ == '__main__':

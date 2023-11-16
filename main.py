@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import requests , pycurl, json, sqlite3
+import requests, json, sqlite3
 
 api_key = "P8ahPHp6GiDVgvIVSzqV2l3gFGxLAp3d"
 base_url = "https://app.ticketmaster.com/discovery/v2/events"

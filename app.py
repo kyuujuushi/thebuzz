@@ -9,7 +9,7 @@ from pathlib import Path
 import os
 import pytz
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 #add location later
 def mk_cal (name, date):
@@ -116,7 +116,6 @@ def test():
 
 @app.route('/')
 def index():
-
     return render_events_page(1)
 
 @app.route('/events/<int:page>')
@@ -125,36 +124,54 @@ def events(page):
 
 def render_events_page(page):
     per_page = 5  # Number of events per page
-
-    #connecting to the database and fetching the data
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Count total number of events, coount #rows
+    # Fetch ticket price ranges for the dropdown
+    cursor.execute("SELECT DISTINCT ticket_range FROM processed_events")
+    price_ranges = [row['ticket_range'] for row in cursor.fetchall()]
+
+    # Count total number of events
     cursor.execute("SELECT COUNT(*) FROM processed_events")
     total_events = cursor.fetchone()[0]
-#=======================================
-#don't ask me about the math D:, the idea is we don't know how many pages we gona need for events, 
-# so this fomula basically caculate that
-    # Calculate the total number of pages
-    total_pages = (total_events + per_page - 1) // per_page
 
-    # Calculate the offset for the current page
+    total_pages = (total_events + per_page - 1) // per_page
     offset = (page - 1) * per_page
 
     # Fetch events for the current page
     cursor.execute(f"SELECT * FROM processed_events LIMIT {per_page} OFFSET {offset}")
     events = cursor.fetchall()
-#==================================================
+
     conn.close()
 
-    # calculate to show or not Previous Page button
     show_previous = page > 1
-    # calculate to show the Next Page button
     show_next = page < total_pages
 
-    return render_template('index.html', events=events, page=page, total_pages=total_pages,show_previous=show_previous, show_next=show_next)
+    return render_template('index.html', events=events, page=page, total_pages=total_pages,
+                           show_previous=show_previous, show_next=show_next, price_ranges=price_ranges)
 
+@app.route('/filter_by_price/<price_range>/<int:page>')
+def filter_by_price(price_range, page):
+    per_page = 5
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(f"SELECT COUNT(*) FROM processed_events WHERE ticket_range = ?", (price_range,))
+    total_events = cursor.fetchone()[0]
+
+    total_pages = (total_events + per_page - 1) // per_page
+    offset = (page - 1) * per_page
+
+    cursor.execute(f"SELECT * FROM processed_events WHERE ticket_range = ? LIMIT {per_page} OFFSET {offset}", (price_range,))
+    filtered_events = cursor.fetchall()
+
+    conn.close()
+
+    show_previous = page > 1
+    show_next = page < total_pages
+
+    return render_template('index.html', events=filtered_events, page=page, total_pages=total_pages,
+                           show_previous=show_previous, show_next=show_next, selected_price_range=price_range)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

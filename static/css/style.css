@@ -19,8 +19,8 @@
  /*Event list section*/
   .leftcolumn{ 
     padding: 30px;
-    width: 30%;
-    display: block;
+    width: 50%;
+    
     float: left;
   }
 
@@ -29,11 +29,39 @@
   .rightcolumn {
     float: left;
     padding: 20px;
-    width: 70%;
+    width: 50%;
     background-color: #ffffec;
 
     
   }
+
+  /*pagination*/ 
+
+.pagination {
+    margin-top: 20px; /* Add some top margin for spacing */
+    text-align: center;
+    clear: both;
+    padding-top: 20px;
+   
+}
+
+.pagination button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  
+}
+
+.pagination button:hover {
+  background-color: #45a049;
+}
 
 /* Logo image setup*/
   img#logoImage {
@@ -48,36 +76,92 @@
  }
 
   
-  /* Create two columns/boxes that floats next to each other */
-  .navtop {
-    float: left;
-    width: 100%;
-    background: gray;
-    padding: 1px;
-    overflow: hidden;
-  }
+  /* Create nav bar */
+.navtop {
+  float: left;
+  width: 100%;
+  background: gray;
+  padding: 1px;
+  overflow: hidden;
+}
 
-  /* Style the topnav links */
+/* Style the nav top links */
 .navtop a {
   float: left;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding-top: 15px 15px;
   padding: 15px 15px;
   text-decoration: none;
 }
+
 /* Change color on hover */
 .navtop a:hover {
   background-color: goldenrod;
   color: black;
-  border-radius:1px;
+ 
 }
-  /* Style the list inside the menu */
-  .navtop ul {
-    list-style-type: none;
-    padding: 0;
-  }
+
+/* Style the list inside the menu */
+.navtop ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Remove default margin to prevent misalignment */
+}
+
+/* Ensure alignment of home, filter, and about us links */
+.navtop li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+/* Style for the dropdown */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 
   /*table style*/
   td, th {
@@ -107,7 +191,7 @@
   }
   
   /* Clear floats after the columns */
-  .leftcolumn::after,.rightcolumn::after {
+  .leftcolumn::after,.rightcolumn::after  {
     content: "";
     display: table;
     clear: both;

@@ -31,17 +31,19 @@
     padding: 20px;
     width: 50%;
     background-color: #ffffec;
+    
 
     
   }
+  
 
   /*pagination*/ 
 
 .pagination {
     margin-top: 20px; /* Add some top margin for spacing */
     text-align: center;
-    clear: both;
-    padding-top: 20px;
+    
+    padding: 20px;
    
 }
 
@@ -60,7 +62,7 @@
 }
 
 .pagination button:hover {
-  background-color: #45a049;
+  background-color: #415c43;
 }
 
 /* Logo image setup*/
@@ -191,7 +193,7 @@
   }
   
   /* Clear floats after the columns */
-  .leftcolumn::after,.rightcolumn::after  {
+  .leftcolumn::after,.rightcolumn::after, .pagination {
     content: "";
     display: table;
     clear: both;

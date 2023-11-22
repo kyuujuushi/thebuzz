@@ -104,11 +104,12 @@ if request.method == 'POST':
             redirect(url_for('aboutus.html'))
             render_template('aboutus.html', posts=posts)
 '''
-
+'''
 @app.route('/calendars', methods=['GET', 'POST'])
 
 def calendars(filename):
-    return url_for('calendars', filename=filename)
-
+    filename = filename + '.ics'
+    return send_file(filename, as_attachment=True)
+'''
 if __name__ == '__main__':
     app.run()

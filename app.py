@@ -105,7 +105,7 @@ if request.method == 'POST':
             render_template('aboutus.html', posts=posts)
 '''
 
-@app.route('/calendars', methods=['GET', 'POST'])
+@app.route('/calendars/<filename>', methods=['GET', 'POST'])
 
 def calendars(filename):
     filename = os.path.join("./calendars", filename + ".ics")

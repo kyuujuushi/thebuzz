@@ -48,7 +48,7 @@
                             <p>Ticket Range: {{ post['ticket_range'] }}</p>
                             <p>Date: {{ post['date'] }}</p>
                             <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
-                            <a href="{{ url_for('calendars', filename=post['event_name'], endpoint='calendars')}}">Get Calendar</a> 
+                            <a href="{{ url_for('calendars', filename=post['event_name'])}}">Get Calendar</a> 
                         </td>
                     </tr>
                 {% endfor %}

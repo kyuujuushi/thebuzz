@@ -38,7 +38,7 @@
     </div>
         <article>
             <h1>Events</h1>
-            <ul>
+            <ul>                
                 {% for post in posts %}
                     <tr>
                         <td>
@@ -47,14 +47,8 @@
                             </a>
                             <p>Ticket Range: {{ post['ticket_range'] }}</p>
                             <p>Date: {{ post['date'] }}</p>
-                            <!--<p>Image {{ post['image_urls'] }}</p>-->
-                            <!--<p>url {{ post['event_url'] }}</p>-->
                             <a href="{{ post['event_url'] }}"><img src="{{ post['image_urls'] }}"></a>
-                            
-                            <form>
-                                <input type="submit" name="Get Calendar" value="getCal">
-                            </form>
-                            
+                            <a href="{{ url_for(directory='calendars', filename=post['event_name'], endpoint=static)}}">Get Calendar</a> 
                         </td>
                     </tr>
                 {% endfor %}

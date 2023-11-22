@@ -124,7 +124,7 @@ def events(page):
     return render_events_page(page)
 
 def render_events_page(page):
-    per_page = 5  # Number of events per page
+    per_page = 6  # Number of events per page
 
     #connecting to the database and fetching the data
     conn = get_db_connection()

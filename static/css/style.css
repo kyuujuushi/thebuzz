@@ -96,7 +96,7 @@
     position: sticky;
   }
    th {
-    background: #ffc107;
+    background: goldenrod;
     color: white;
     border-radius: 0;
     top: 0;
@@ -134,4 +134,37 @@
     
   }
 
-  
+h1 {
+  color: goldenrod
+  text-align: center;
+}
+
+/* modified event layout */
+.event-containter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.event-row {
+  flex: 1;
+  width: 48%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.event-column {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center pagination buttons */
+.pagination-container {
+  text-align: center;
+  margin-top: 10px; 
+}
+
+.pagination-container a {
+  margin: 0 5px; 
+}

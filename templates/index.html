@@ -40,41 +40,41 @@
         </ul>
     </div>
 <!--{%block content%}-->
-        <article>
-            <h1>Events</h1> 
-            <table align="center">
-                {% for event in events %}
+<article>
+    <h1>Events</h1>
+    <div class="event-container">
+        <table align="center">
+            {% for event in events %}
+                {% if loop.index is odd %}
                     <tr>
-                        <td>
-                            <a href="{{ event['event_url'] }}">
-                                <h2>{{ event['event_name'] }}</h2>
-                            </a>
-                            <p>Ticket Range: {{ event['ticket_range'] }}</p>
-                            <p>Date: {{ event['date'] }}</p>
-                            <!--<p>Image {{ event['image_urls'] }}</p>-->
-                            <!--<p>url {{ event['event_url'] }}</p>-->
-                            <!--<a href="{{ event['event_url'] }}"><img src="{{ event['image_urls'] }}"></a>
-                            -->
-                            <form>
-                                <input type="submit" name="Get Calendar" value="getCal">
-                            </form>
-                            <img src="{{ event['image_urls']|replace('"', '') }}">
-                        </td>
-                        <th> ! </th>
+                {% endif %}
+                <td>
+                    <a href="{{ event['event_url'] }}">
+                        <h2>{{ event['event_name'] }}</h2>
+                    </a>
+                    <p>Ticket Range: {{ event['ticket_range'] }}</p>
+                    <p>Date: {{ event['date'] }}</p>
+                    <form>
+                        <input type="submit" name="Get Calendar" value="getCal">
+                    </form>
+                    <img src="{{ event['image_urls']|replace('"', '') }}">
+                </td>
+                {% if loop.index is even or loop.last %}
                     </tr>
-                    {% endfor %}
-            </table>
-            <p>Another event</p>
-            <!-- Pagination buttons -->
-    <div>
-        {% if show_previous %}
-            <a href="{{ url_for('events', page=page-1) }}"><button>Previous Page</button></a>
-        {% endif %}
-
-        {% if show_next %}
-            <a href="{{ url_for('events', page=page+1) }}"><button>Next Page</button></a>
-        {% endif %}
+                {% endif %}
+            {% endfor %}
+        </table>
     </div>
+            <!-- Pagination buttons -->
+            <div class="pagination-container">
+                {% if show_previous %}
+                    <a href="{{ url_for('events', page=page-1) }}"><button>Previous Page</button></a>
+                {% endif %}
+    
+                {% if show_next %}
+                    <a href="{{ url_for('events', page=page+1) }}"><button>Next Page</button></a>
+                {% endif %}
+            </div>
     
         </article>
 <!--{%endblock%}-->

@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect
+from flask import *
 from icalendar import Calendar, Event
 from datetime import datetime
 from pathlib import Path
@@ -15,6 +15,8 @@ def get_db_connection():
 
 def mk_cal (name, date):
     dateInt = []
+    #nameRedo = name.replace(' ', '_')
+    #trueName = nameRedo.replace('.', '')
     dateList = date.split("-")
     for i in range(len(dateList)):
         dateItem = int(dateList[i])
@@ -37,9 +39,6 @@ def mk_cal (name, date):
         f.write(cal.to_ical())
         f.close()
 
-def print_stuff():
-    return 'hello motherfucker'
-
 @app.route('/')
 
 def index():
@@ -60,7 +59,7 @@ def index():
     #eventname = "test"
     #eventdate = 0
 
-    # does this stupid thing gives me strings????
+    # does this stupid thing gives me strings???? yes, yes it does :)
     conn.row_factory = lambda cursor, row: row[0]
 
     #this calls mk_cal to make a .ics file for each event
@@ -105,5 +104,11 @@ if request.method == 'POST':
             redirect(url_for('aboutus.html'))
             render_template('aboutus.html', posts=posts)
 '''
+
+@app.route('/calendars', methods=['GET', 'POST'])
+
+def calendars(filename):
+    return url_for('calendars', filename=filename)
+
 if __name__ == '__main__':
     app.run()

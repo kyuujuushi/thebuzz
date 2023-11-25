@@ -39,7 +39,7 @@
             </li>
         </ul>
     </div>
-<!--{%block content%}-->
+
         <article>
             <h1>Events</h1>
             <table>
@@ -51,17 +51,16 @@
                             </a>
                             <p>Ticket Range: {{ event['ticket_range'] }}</p>
                             <p>Date: {{ event['date'] }}</p>
-                            <!--<p>Image {{ event['image_urls'] }}</p>-->
-                            <!--<p>url {{ event['event_url'] }}</p>-->
-                            <!--<a href="{{ event['event_url'] }}"><img src="{{ event['image_urls'] }}"></a>
-                            -->
+                            <!--<a href="{{ event['event_url'] }}"><img src="{{ event['image_urls'] }}"></a>-->
+                            
                             <form>
+                                <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a> 
                                 <input type="submit" name="Get Calendar" value="getCal">
                             </form>
                             <img src="{{ event['image_urls']|replace('"', '') }}">
                         </td>
                     </tr>
-                    {% endfor %}
+                {% endfor %}
             </table>
             <p>Another event</p>
             <!-- Pagination buttons -->
@@ -76,7 +75,7 @@
     </div>
     
         </article>
-<!--{%endblock%}-->
+
         <section>
             <nav>
                 <ul>

@@ -3,6 +3,9 @@ from flask import *
 from icalendar import Calendar, Event
 from datetime import datetime
 from pathlib import Path
+# - Augustus
+#from flask_sqlalchemy import 
+# - Augustus
 import os
 import pytz
 
@@ -57,6 +60,15 @@ def mk_cal (name, date):
         f.close()
 
 
+#WIP paginated (old) - Augustus
+"""
+
+    page =
+request.args.get ('page', 1,
+type=int)
+
+"""
+
 @app.route('/about')
 
 def about():
@@ -73,7 +85,7 @@ def events(page):
     return render_events_page(page)
 
 def render_events_page(page):
-    per_page = 5  # Number of events per page
+    per_page = 6  # Number of events per page
 
     #connecting to the database and fetching the data
     conn = get_db_connection()

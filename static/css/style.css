@@ -5,28 +5,23 @@
   
   body {
     font-family: Arial, Helvetica, sans-serif;
-   
   }
   
   /* Style the header */
   .header {
-    background-color: #5b7c99;
-    padding: 20px;
+    background: linear-gradient(to bottom,  black , goldenrod);
+    padding: 25px;
     text-align: center;
-    font-size: 20px;
-    color: white;
-     
-  
+    font-size: 40px;
+    color: chocolate;
   }
   
-
  /*Event list section*/
-
   .leftcolumn{ 
     padding: 30px;
     width: 30%;
     display: block;
-    float: left ;
+    float: left;
   }
 
   /* calendar section*/
@@ -36,9 +31,10 @@
     padding: 20px;
     width: 70%;
     background-color: #ffffec;
+
     
   }
-  
+
 /* Logo image setup*/
   img#logoImage {
     display: block;
@@ -56,8 +52,8 @@
   .navtop {
     float: left;
     width: 100%;
-    background: #000000;
-    padding: 2px;
+    background: gray;
+    padding: 1px;
     overflow: hidden;
   }
 
@@ -67,14 +63,15 @@
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding-top: 15px 15px;
+  padding: 15px 15px;
   text-decoration: none;
 }
 /* Change color on hover */
 .navtop a:hover {
-  background-color: #fde74c;
+  background-color: goldenrod;
   color: black;
-  border-radius:50%;
+  border-radius:1px;
 }
   /* Style the list inside the menu */
   .navtop ul {
@@ -84,19 +81,22 @@
 
   /*table style*/
   td, th {
-    border: 1px solid #999;
-    padding: 20px;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
   }
   td{
-    background: gray;
+    background: goldenrod;
     color: white;
+    text-align: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
   }
   .primary{
-    background-color: brown;
+    background-color: red;
     position: sticky;
   }
    th {
-    background: #ffc107;
+    background: goldenrod;
     color: white;
     border-radius: 0;
     top: 0;
@@ -115,11 +115,12 @@
   
   /* Style the footer */
   .footer {
-    background-color: #25361b;
+    background-color: grey;
     padding: 10px;
     text-align: center;
     color: white;
     clear: both;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
    
   
   }
@@ -133,4 +134,37 @@
     
   }
 
-  
+h1 {
+  color: goldenrod
+  text-align: center;
+}
+
+/* modified event layout */
+.event-containter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.event-row {
+  flex: 1;
+  width: 48%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.event-column {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center pagination buttons */
+.pagination-container {
+  text-align: center;
+  margin-top: 10px; 
+}
+
+.pagination-container a {
+  margin: 0 5px; 
+}

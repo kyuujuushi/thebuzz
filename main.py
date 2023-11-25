@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import requests , pycurl, json, sqlite3
+import requests, json, sqlite3
 
 api_key = "P8ahPHp6GiDVgvIVSzqV2l3gFGxLAp3d"
 base_url = "https://app.ticketmaster.com/discovery/v2/events"
@@ -76,30 +76,9 @@ def process_events(events):
     return processed_events
 
 
-# create database 
-def create_database():
-    connection = sqlite3.connect('events.db')
-    cursor = connection.cursor()
-    #create table
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS processed_events (
-            event_id TEXT PRIMARY KEY,
-            event_name TEXT,
-            ticket_range TEXT,
-            date TEXT,
-            image_urls TEXT,
-            event_url TEXT,
-            genre_name TEXT
-            
-        )
-    ''')
-    
-    connection.commit()
-    connection.close()
 
 
-
-
+# update database
 def update_database(processed_events):
     connection = sqlite3.connect('events.db')
     cursor = connection.cursor()
@@ -108,21 +87,59 @@ def update_database(processed_events):
         cursor.execute('''
             INSERT OR REPLACE INTO processed_events (event_id, event_name, ticket_range, date, image_urls, event_url, genre_name)
             VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'],json.dumps(event['image_urls']), event['event_url'],event['genre_name']))
+        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'], json.dumps(event['image_urls']), event['event_url'], event['genre_name']))
+
+    connection.commit()
+    connection.close()
+
+# fetch new data, update database, and remove old data
+def update_data():
+    events_list = api_call(url)
+    new_processed_events = process_events(events_list)
+
+    # Load existing data from the database
+    connection = sqlite3.connect('events.db')
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM processed_events')
+    old_processed_events = cursor.fetchall()
+    connection.close()
+
+    # Extract event_ids for comparison
+    new_event_ids = set(event['event_id'] for event in new_processed_events)
+    old_event_ids = set(event[0] for event in old_processed_events)
+
+    # Calculate new, update, and delete events
+    to_add = [event for event in new_processed_events if event['event_id'] not in old_event_ids]
+    to_update = [event for event in new_processed_events if event['event_id'] in old_event_ids]
+    to_delete = [event[0] for event in old_event_ids if event not in new_event_ids]
+
+
+    # Update the database
+    connection = sqlite3.connect('events.db')
+    cursor = connection.cursor()
+    for event in to_add:
+        cursor.execute('''
+            INSERT INTO processed_events (event_id, event_name, ticket_range, date, image_urls, event_url, genre_name)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ''', (event['event_id'], event['event_name'], event['ticket_range'], event['date'], json.dumps(event['image_urls']), event['event_url'], event['genre_name']))
+
+    for event in to_update:
+        cursor.execute('''
+            UPDATE processed_events
+            SET event_name=?, ticket_range=?, date=?, image_urls=?, event_url=?, genre_name=?
+            WHERE event_id=?
+        ''', (event['event_name'], event['ticket_range'], event['date'], json.dumps(event['image_urls']), event['event_url'], event['genre_name'], event['event_id']))
+
+    for event_id in to_delete:
+        cursor.execute('DELETE FROM processed_events WHERE event_id=?', (event_id,))
+
 
     connection.commit()
     connection.close()
 
 
-#=====================================================================================
-# "https://app.ticketmaster.com/discovery/v2/events.json?apikey=P8ahPHp6GiDVgvIVSzqV2l3gFGxLAp3d&countryCode=US&city=Boston"
-# testing
-events_list = api_call(url)
-A = process_events(events_list)
-create_database()
-update_database(A)
-
-#test function for sql table
+#======================
+# test function for sql table
 def print_table():
     connection = sqlite3.connect('events.db')
     cursor = connection.cursor()
@@ -137,5 +154,6 @@ def print_table():
             print(row)
 
     connection.close()
-
-print_table()
+# Testing the update_data function
+update_data()
+print_table()  # Print the updated table

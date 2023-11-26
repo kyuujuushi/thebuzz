@@ -4,6 +4,6 @@ WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python create_db.py
-EXPOSE 80
+EXPOSE 5000
 ENV NAME project_env
 CMD ["python", "app.py"]

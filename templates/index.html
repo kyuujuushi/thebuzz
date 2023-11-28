@@ -19,11 +19,12 @@
 
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <div id="logoImage" align="left">
-            <img src="images/beeLogoYellowAlphatransp.png" style="float:left;width:62px;height:62px;" alt="" />
-        </div>
+   <!-- Header -->
+   <div class="header">
+    <div id="logoImage" align="left">
+        <img src="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}"
+            style="float:left;width:62px;height:62px;" />
+    </div>
         
         <h2>{% block title %}  The Buzz {% endblock %}</h2>
         

@@ -11,9 +11,10 @@
   .header {
     background: linear-gradient(to bottom,  black , goldenrod);
     padding: 25px;
-    text-align: center;
+    text-align: left;
     font-size: 40px;
-    color: chocolate;
+    color: goldenrod;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
   }
   
  /*Event list section*/
@@ -52,8 +53,7 @@
   .navtop {
     float: left;
     width: 100%;
-    background: gray;
-    padding: 1px;
+    background: grey;
     overflow: hidden;
   }
 
@@ -61,7 +61,7 @@
 .navtop a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: white;
   text-align: center;
   padding-top: 15px 15px;
   padding: 15px 15px;
@@ -135,8 +135,13 @@
   }
 
 h1 {
-  color: goldenrod
+  color: goldenrod;
   text-align: center;
+  font-size: 50px;
+  padding-bottom: -5%;
+  padding-top: -5%;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
+
 }
 
 /* modified event layout */
@@ -168,3 +173,4 @@ h1 {
 .pagination-container a {
   margin: 0 5px; 
 }
+

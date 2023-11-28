@@ -13,7 +13,7 @@
     <title>The Buzz</title>
 
     <!-- Add icon link -->
-    <link rel="icon" href="images/beeLogo_small_alpha.png" type="image/x-icon">
+    <link rel="icon" href="images/beeLogoYellowAlphatransp.png" type="image/x-icon">
 
 </head>
 
@@ -22,7 +22,8 @@
     <!-- Header -->
     <div class="header">
         <div id="logoImage" align="left">
-            <img src="images/beeLogoYellowAlphatransp.png" style="float:left;width:62px;height:62px;" alt="" />
+            <img src="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}"
+                style="float:left;width:62px;height:62px;" />
         </div>
         
         <h2>{% block title %}  The Buzz {% endblock %}</h2>

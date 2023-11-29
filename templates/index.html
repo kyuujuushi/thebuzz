@@ -21,21 +21,17 @@
 
     <!-- Header -->
     <div class="header">
-            <img class="logo" src="./static/images/beeLogoYellowAlphatransp.png" alt="" />
+        <img class="logo" src="./static/images/beeLogoYellowAlphatransp.png" alt="a logo of a bee that kinda looks like its wearing glasses"/>
         <h2>The Buzz</h2>
         <h4>Buzz from one event to another</h4>
     </div>
 
     <!-- Nav Bar -->
-    <div class="navtop">
-        <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="#Filter">Filter</a></li>
-            <li>
-                <a href="{{ url_for('about')  }}">About Us</a>
-            </li>
-        </ul>
-    </div>
+    <nav>
+        <a class="active" href="index.html">Home</a>
+        <a href="#Filter">Filter</a>
+        <a href="{{ url_for('about')  }}">About Us</a>
+    </nav>
     
     <!-- Weather Widget -->
     <div>
@@ -87,9 +83,9 @@
     </div>
  </article>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>2023</p>
-    </div>
+ <!-- Footer -->
+<div class="footer">
+    <p>2023</p>
+</div>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <title>The Buzz</title>
 
     <!-- Add icon link -->
-    <link rel="icon" href="images/beeLogo_small_alpha.png" type="image/x-icon">
+    <link rel="icon" href="./static/images/beeLogoYellowAlphatransp.png" type="image/x-icon">
 
 </head>
 
@@ -21,12 +21,9 @@
 
     <!-- Header -->
     <div class="header">
-        <div id="logoImage" align="left">
-            <img src="images/beeLogoYellowAlphatransp.png" style="float:left;width:62px;height:62px;" alt="" />
-        </div>
-        
-        <h2>{% block title %}  The Buzz {% endblock %}</h2>
-        
+            <img class="logo" src="./static/images/beeLogoYellowAlphatransp.png" alt="" />
+        <h2>The Buzz</h2>
+        <h4>Buzz from one event to another</h4>
     </div>
 
     <!-- Nav Bar -->
@@ -39,18 +36,27 @@
             </li>
         </ul>
     </div>
+    
+    <!-- Weather Widget -->
     <div>
-        <!-- Weather Widget -->
-        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON"
-            data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
         <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            !function(d,s,id) {
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src='https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }
+            (document,'script','weatherwidget-io-js');
         </script>
     </div>
 <article>
     <h1>Events</h1>
-    <div class="event-container">
-        <table align="center">
+    <div class="events">
+        <table>
             {% for event in events %}
                 <tr>
                     <td>
@@ -60,24 +66,26 @@
                     <p>Ticket Range: {{ event['ticket_range'] }}</p>
                     <p>Date: {{ event['date'] }}</p>
                     <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a>
-                    <img src="{{ event['image_urls']|replace('"', '') }}">
+                    </td>
+                    <td>
+                        <img src="{{ event['image_urls']|replace('"', '') }}">
                     </td>
                 </tr>
             {% endfor %}
         </table>
     </div>
-            <!-- Pagination buttons -->
-            <div class="pagination-container">
-                {% if show_previous %}
-                    <a href="{{ url_for('events', page=page-1) }}"><button>Previous Page</button></a>
-                {% endif %}
+
+    <!-- Pagination buttons -->
+    <div class="pages">
+        {% if show_previous %}
+        <button><a href="{{ url_for('events', page=page-1) }}">Previous Page</a></button>
+        {% endif %}
     
-                {% if show_next %}
-                    <a href="{{ url_for('events', page=page+1) }}"><button>Next Page</button></a>
-                {% endif %}
-            </div>
-    
-        </article>
+        {% if show_next %}
+        <button><a href="{{ url_for('events', page=page+1) }}">Next Page</a></button>
+        {% endif %}
+    </div>
+ </article>
 
     <!-- Footer -->
     <div class="footer">

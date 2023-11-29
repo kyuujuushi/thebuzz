@@ -39,30 +39,30 @@
             </li>
         </ul>
     </div>
-
+    <div>
+        <!-- Weather Widget -->
+        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON"
+            data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+        <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+    </div>
 <article>
     <h1>Events</h1>
     <div class="event-container">
         <table align="center">
             {% for event in events %}
-                {% if loop.index is odd %}
-                    <tr>
-                {% endif %}
-                <td>
+                <tr>
+                    <td>
                     <a href="{{ event['event_url'] }}">
                         <h2>{{ event['event_name'] }}</h2>
                     </a>
                     <p>Ticket Range: {{ event['ticket_range'] }}</p>
                     <p>Date: {{ event['date'] }}</p>
-                    <form>
-                        <input type="submit" name="Get Calendar" value="getCal">
-                        <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a>
-                    </form>
+                    <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a>
                     <img src="{{ event['image_urls']|replace('"', '') }}">
-                </td>
-                {% if loop.index is even or loop.last %}
-                    </tr>
-                {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </table>
     </div>
@@ -78,21 +78,6 @@
             </div>
     
         </article>
-
-        <section>
-            <nav>
-                <ul>
-                    <!-- Weather Widget -->
-                    <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON"
-                        data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
-                    <script>
-                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                    </script>
-                </ul>
-            </nav>
-
-    </section>
-    
 
     <!-- Footer -->
     <div class="footer">

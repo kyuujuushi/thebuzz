@@ -80,3 +80,34 @@ td > a:hover {
     color: var(--yellow);
     transition: 0.5s;
 }
+
+div.pages {
+    margin: auto;
+    text-align: center;
+    padding: 5em;
+}
+
+button {
+    background-color: black;
+    padding: 0.5em;
+    border: none;
+}
+
+button > a {
+    color: #F5F7F8;
+    font-size: 2em;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+button > a:hover {
+    color: #F4CE14;
+    transition: 0.5s;
+}
+
+footer {
+    background-color: black;
+    color: #F5F7F8;
+    text-align: center;
+    padding: 0.5em;
+}

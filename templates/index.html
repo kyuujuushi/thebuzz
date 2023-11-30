@@ -12,14 +12,14 @@
     <title>The Buzz</title>
 
     <!-- Add icon link -->
-    <link rel="icon" href="./static/images/beeLogoYellowAlphatransp.png" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}" type="image/x-icon">
 
 </head>
 
 <body>
     <!-- Header -->
     <div class="header">
-        <img class="logo" src="./static/images/beeLogoYellowAlphatransp.png" alt="a logo of a bee that kinda looks like its wearing glasses"/>
+        <img class="logo" src="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}" alt="a logo of a bee that kinda looks like its wearing glasses"/>
         <h2 class="header">The Buzz</h2>
         <h4 class="header">Fly from one event to another</h4>
     </div>

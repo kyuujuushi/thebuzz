@@ -72,18 +72,18 @@
     <!-- Pagination buttons -->
     <div class="pages">
         {% if show_previous %}
-        <button><a href="{{ url_for('events', page=page-1) }}">Previous Page</a></button>
+        <button><a href="{{ url_for('events', page=page-1) }}">←</a></button>
         {% endif %}
     
         {% if show_next %}
-        <button><a href="{{ url_for('events', page=page+1) }}">Next Page</a></button>
+        <button><a href="{{ url_for('events', page=page+1) }}">→</a></button>
         {% endif %}
     </div>
  </article>
 
  <!-- Footer -->
-<div class="footer">
+<footer>
     <p>2023</p>
-</div>
+</footer>
 </body>
 </html>

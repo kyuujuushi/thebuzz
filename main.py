@@ -138,22 +138,8 @@ def update_data():
     connection.close()
 
 
-#======================
-# test function for sql table
-def print_table():
-    connection = sqlite3.connect('events.db')
-    cursor = connection.cursor()
-
-    cursor.execute('SELECT * FROM processed_events')
-    rows = cursor.fetchall()
-
-    if not rows:
-        print("No records found in the table.")
-    else:
-        for row in rows:
-            print(row)
-
-    connection.close()
-# Testing the update_data function
-update_data()
-print_table()  # Print the updated table
+if __name__ == '__main__':
+    EVENTS = api_call(url)
+    PROCESS_EVENTS = process_events(EVENTS)
+    update_database(PROCESS_EVENTS)
+    update_data()

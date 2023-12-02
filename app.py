@@ -106,5 +106,38 @@ def calendars(filename):
     filename = os.path.join("./calendars", filename + ".ics")
     return send_file(filename, as_attachment=True)
 
+@app.route('/filter_by_price/<price_range>/<int:page>')
+def filter_by_price(price_range, page):
+    # Number of events to display per page
+    per_page = 5
+    # Establish a connection to the SQLite database
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Count the total number of events for the selected price range
+    cursor.execute(f"SELECT COUNT(*) FROM processed_events WHERE ticket_range = ?", (price_range,))
+    total_events = cursor.fetchone()[0]
+
+    # Calculate the total number of pages for pagination
+    total_pages = (total_events + per_page - 1) // per_page
+
+    # Calculate the offset for fetching events based on the current page
+    offset = (page - 1) * per_page
+
+    # Fetch events for the current page and the selected price range
+    cursor.execute(f"SELECT * FROM processed_events WHERE ticket_range = ? LIMIT {per_page} OFFSET {offset}", (price_range,))
+    filtered_events = cursor.fetchall()
+
+    # Close the database connection
+    conn.close()
+
+    # Determine whether to show previous and next pagination links
+    show_previous = page > 1
+    show_next = page < total_pages
+
+    # Render the template with the filtered events and pagination information
+    return render_template('index.html', events=filtered_events, page=page, total_pages=total_pages,
+                           show_previous=show_previous, show_next=show_next, selected_price_range=price_range)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

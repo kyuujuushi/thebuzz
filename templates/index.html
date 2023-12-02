@@ -27,7 +27,13 @@
     <!-- Nav Bar -->
     <nav>
         <a class="active" href="index.html">Home</a>
-        <a href="#Filter">Filter</a>
+        <a href="#" class="dropbtn">Filter</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('index') }}">All</a>
+                    {% for price_range in price_ranges %}
+                    <a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a>
+                    {% endfor %}
+                </div>
         <a href="{{ url_for('about')  }}">About Us</a>
     </nav>
     

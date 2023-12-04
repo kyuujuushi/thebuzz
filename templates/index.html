@@ -6,98 +6,90 @@
 
     <!-- The pyscript thingy -->
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>The Buzz</title>
 
     <!-- Add icon link -->
-    <link rel="icon" href="images/beeLogoYellowAlphatransp.png" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/thiccmusBee.png') }}" type="image/x-icon">
 
 </head>
 
 <body>
-
     <!-- Header -->
     <div class="header">
-        <div id="logoImage" align="left">
-            <img src="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}"
-                style="float:left;width:62px;height:62px;" />
-        </div>
-        
-        <h2>{% block title %}  The Buzz {% endblock %}</h2>
-        
+        <img class="logo" src="{{ url_for('static', filename='images/beeLogoYellowAlphatransp.png') }}" alt="a logo of a bee that kinda looks like its wearing glasses"/>
+        <h2 class="header">The Buzz</h2>
+        <h4 class="header">Fly from one event to another</h4>
     </div>
 
     <!-- Nav Bar -->
-    <div class="navtop">
-        <ul>
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="#Filter">Filter</a></li>
-            <li>
-                <a href="{{ url_for('about')  }}">About Us</a>
-            </li>
-        </ul>
+    <nav>
+        <a class="active" href="index.html">Home</a>
+        <a href="#" class="dropbtn">Filter</a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('index') }}">All</a>
+                    {% for price_range in price_ranges %}
+                    <a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a>
+                    {% endfor %}
+                </div>
+        <a href="{{ url_for('about')  }}">About Us</a>
+    </nav>
+    
+    <!-- Weather Widget -->
+    <div>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+        <script>
+            !function(d,s,id) {
+                var js,fjs=d.getElementsByTagName(s)[0];
+                if(!d.getElementById(id)){
+                    js=d.createElement(s);
+                    js.id=id;
+                    js.src='https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js,fjs);
+                }
+            }
+            (document,'script','weatherwidget-io-js');
+        </script>
     </div>
-
 <article>
     <h1>Events</h1>
-    <div class="event-container">
-        <table align="center">
+    <div class="events">
+        <table>
             {% for event in events %}
-                {% if loop.index is odd %}
-                    <tr>
-                {% endif %}
-                <td>
+                <tr>
+                    <td>
                     <a href="{{ event['event_url'] }}">
                         <h2>{{ event['event_name'] }}</h2>
                     </a>
                     <p>Ticket Range: {{ event['ticket_range'] }}</p>
                     <p>Date: {{ event['date'] }}</p>
-                    <form>
-                        <input type="submit" name="Get Calendar" value="getCal">
-                        <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a>
-                    </form>
-                    <img src="{{ event['image_urls']|replace('"', '') }}">
-                </td>
-                {% if loop.index is even or loop.last %}
-                    </tr>
-                {% endif %}
+                    <a href="{{ url_for('calendars', filename=event['event_name'])}}">Get Calendar</a>
+                    </td>
+                    <td>
+                        <img src="{{ event['image_urls']|replace('"', '') }}">
+                    </td>
+                </tr>
             {% endfor %}
         </table>
     </div>
-            <!-- Pagination buttons -->
-            <div class="pagination-container">
-                {% if show_previous %}
-                    <a href="{{ url_for('events', page=page-1) }}"><button>Previous Page</button></a>
-                {% endif %}
-    
-                {% if show_next %}
-                    <a href="{{ url_for('events', page=page+1) }}"><button>Next Page</button></a>
-                {% endif %}
-            </div>
-    
-        </article>
 
-        <section>
-            <nav>
-                <ul>
-                    <!-- Weather Widget -->
-                    <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON"
-                        data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
-                    <script>
-                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                    </script>
-                </ul>
-            </nav>
-
-    </section>
+    <!-- Pagination buttons -->
+    <div class="pages">
+        {% if show_previous %}
+        <button><a href="{{ url_for('events', page=page-1) }}">←</a></button>
+        {% endif %}
     
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>2023</p>
+        {% if show_next %}
+        <button><a href="{{ url_for('events', page=page+1) }}">→</a></button>
+        {% endif %}
     </div>
+ </article>
+
+ <!-- Footer -->
+<footer>
+    <p>2023</p>
+</footer>
 </body>
 </html>

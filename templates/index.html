@@ -30,12 +30,12 @@
         <a href="#" class="dropbtn">Filter</a>
         <a href="{{ url_for('about') }}">About Us</a>
     </nav>
-    <div class="dropdown-content">
+    <ul class="dropdown-content">
         <a href="{{ url_for('index') }}">All</a>
         {% for price_range in price_ranges %}
-        <a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a>
+        <li><a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a></li>
         {% endfor %}
-    </div>
+    </ul>
     <!-- Weather Widget -->
     <div>
         <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_2="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="pool_table">BOSTON WEATHER</a>

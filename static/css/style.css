@@ -44,16 +44,6 @@ nav{
     padding: 0.5em;
 }
 
-<<<<<<< HEAD
-  
-  /* Create two columns/boxes that floats next to each other */
-  .navtop {
-    float: left;
-    width: 100%;
-    background: grey;
-    overflow: hidden;
-  }
-=======
 nav > a {
     color: var(--white);
     text-decoration: none;
@@ -61,7 +51,6 @@ nav > a {
     margin-right: 0.5em;
     transition: 0.5s;
 }
->>>>>>> main
 
 nav > a:hover {
     color: var(--yellow);
@@ -71,16 +60,7 @@ nav > a:hover {
 /* Style for the dropdown */
 .dropdown {
   float: left;
-<<<<<<< HEAD
-  display: block;
-  color: white;
-  text-align: center;
-  padding-top: 15px 15px;
-  padding: 15px 15px;
-  text-decoration: none;
-=======
   overflow: hidden;
->>>>>>> main
 }
 
 .dropdown .dropbtn {
@@ -125,20 +105,10 @@ nav > a:hover {
 }
 
 h1 {
-<<<<<<< HEAD
-  color: goldenrod;
-  text-align: center;
-  font-size: 50px;
-  padding-bottom: -5%;
-  padding-top: -5%;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 2px 2px 4px #000000;
-
-=======
     font-size: 5em;
     text-align: center;
     margin: 0em;
     letter-spacing: 0.5em;
->>>>>>> main
 }
 
 table {
@@ -170,8 +140,6 @@ button {
     border: none;
 }
 
-<<<<<<< HEAD
-=======
 button > a {
     color: #F5F7F8;
     font-size: 2em;
@@ -190,4 +158,3 @@ footer {
     text-align: center;
     padding: 0.5em;
 }
->>>>>>> main

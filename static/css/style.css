@@ -57,164 +57,6 @@ nav > a:hover {
   transition: 0.5s;
 }
 
-/* Style for the dropdown */
-.dropdown {
-float: left;
-overflow: hidden;
-}
-
-.dropdown .dropbtn {
-font-size: 16px;
-border: none;
-outline: none;
-color: white;
-background-color: inherit;
-font-family: inherit;
-margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-background-color: #ddd;
-color: black;
-}
-
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #f9f9f9;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
-}
-
-.dropdown-content a {
-float: none;
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-text-align: left;
-}
-
-.dropdown-content a:hover {
-background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-display: block;
-}
-
-h1 {
-  font-size: 5em;
-  text-align: center;
-  margin: 0em;
-  letter-spacing: 0.5em;
-}:root {
-  --white:  #F5F7F8;
-  --yellow: #F4CE14;
-  --green:  #495E57;
-  --grey:   #45474B;
-}
-
-body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: var(--white);
-}
-
-.header{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0%;
-  top: 5%;
-  right: 0;
-}
-
-img.logo {
-  position: relative;
-}
-
-h2.header {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3em;
-  letter-spacing: 0.2em;
-}
-
-h4.header{
-  position: relative;
-  font-style: italic;
-  font-weight: lighter;
-}
-
-nav{
-  background-color: black;
-  text-align: center;
-  padding: 0.5em;
-}
-
-nav > a {
-  color: var(--white);
-  text-decoration: none;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  transition: 0.5s;
-}
-
-nav > a:hover {
-  color: var(--yellow);
-  transition: 0.5s;
-}
-
-/* Style for the dropdown */
-.dropdown {
-float: left;
-overflow: hidden;
-}
-
-.dropdown .dropbtn {
-font-size: 16px;
-border: none;
-outline: none;
-color: white;
-background-color: inherit;
-font-family: inherit;
-margin: 0;
-}
-
-.navbar a:hover, .dropdown:hover .dropbtn {
-background-color: #ddd;
-color: black;
-}
-
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #f9f9f9;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
-}
-
-.dropdown-content a {
-float: none;
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-text-align: left;
-}
-
-.dropdown-content a:hover {
-background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-display: block;
-}
-
 h1 {
   font-size: 5em;
   text-align: center;
@@ -222,40 +64,42 @@ h1 {
   letter-spacing: 0.5em;
 }
 
-table {
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
+table{
+  margin: auto;
+  margin-bottom: 10%;
+}
+
+td {
+  padding: 1em;
 }
 
 td > a {
-  color: var(--green);
   text-decoration: none;
+  color: #495E57;
   transition: 0.5s;
 }
 
 td > a:hover {
-  color: var(--yellow);
-  transition: 0.5s;
-}
-
-div.pages {
-  margin: auto;
-  text-align: center;
-  padding: 5em;
+  color: #F4CE14;
+  transition: 0.5;
 }
 
 button {
-  background-color: black;
-  padding: 0.5em;
+  position: relative;
+  left: 48%;
+  margin-bottom: 5%;
   border: none;
+  background-color: black;
+  padding: 1em;
+  text-align: center; 
 }
 
 button > a {
-  color: #F5F7F8;
-  font-size: 2em;
+  color: white;
+  size: 2em;
   text-decoration: none;
-  transition: 0.5s;
+  text-align: center;
+  transition: 0.5;
 }
 
 button > a:hover {
@@ -264,56 +108,8 @@ button > a:hover {
 }
 
 footer {
-  background-color: black;
-  color: #F5F7F8;
+  padding: 1em;
   text-align: center;
-  padding: 0.5em;
-}
-
-table {
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-td > a {
-  color: var(--green);
-  text-decoration: none;
-  transition: 0.5s;
-}
-
-td > a:hover {
-  color: var(--yellow);
-  transition: 0.5s;
-}
-
-div.pages {
-  margin: auto;
-  text-align: center;
-  padding: 5em;
-}
-
-button {
   background-color: black;
-  padding: 0.5em;
-  border: none;
-}
-
-button > a {
-  color: #F5F7F8;
-  font-size: 2em;
-  text-decoration: none;
-  transition: 0.5s;
-}
-
-button > a:hover {
-  color: #F4CE14;
-  transition: 0.5s;
-}
-
-footer {
-  background-color: black;
-  color: #F5F7F8;
-  text-align: center;
-  padding: 0.5em;
+  color: white;
 }

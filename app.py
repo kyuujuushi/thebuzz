@@ -74,7 +74,11 @@ def render_events_page(page):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Count total number of events, coount #rows
+    # Fetch ticket price ranges for the dropdown
+    cursor.execute("SELECT DISTINCT ticket_range FROM processed_events")
+    price_ranges = [row['ticket_range'] for row in cursor.fetchall()]
+
+    # Count total number of events
     cursor.execute("SELECT COUNT(*) FROM processed_events")
     total_events = cursor.fetchone()[0]
 #=======================================
@@ -97,8 +101,9 @@ def render_events_page(page):
     # calculate to show the Next Page button
     show_next = page < total_pages
 
-    return render_template('index.html', events=events, page=page, total_pages=total_pages,show_previous=show_previous, show_next=show_next)
-
+# Render the template with the fetched events and pagination information
+    return render_template('index.html', events=events, page=page, total_pages=total_pages,
+                           show_previous=show_previous, show_next=show_next, price_ranges=price_ranges)
 
 @app.route('/calendars/<filename>', methods=['GET', 'POST'])
 

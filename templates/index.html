@@ -26,7 +26,7 @@
 
     <!-- Nav Bar -->
     <nav>
-        <a class="active" href="index.html">Home</a>
+        <a href="{{ url_for('index') }}">Home</a>
         <a href="#" class="dropbtn">Filter</a>
                 <div class="dropdown-content">
                     <a href="{{ url_for('index') }}">All</a>
@@ -39,7 +39,7 @@
     
     <!-- Weather Widget -->
     <div>
-        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_2="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="pool_table">BOSTON WEATHER</a>
         <script>
             !function(d,s,id) {
                 var js,fjs=d.getElementsByTagName(s)[0];

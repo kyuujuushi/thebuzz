@@ -113,3 +113,15 @@ footer {
   background-color: black;
   color: white;
 }
+
+ul.dropdown-content {
+  list-style-type: none;
+  background-color: #F5F7F8;
+  border: black;
+  border-width: 0.1em;
+  position: absolute;
+  z-index: 2;
+  padding-left: 0;
+  margin-top: 0;
+  left: 48%;
+}

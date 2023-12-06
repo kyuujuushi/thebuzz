@@ -114,14 +114,37 @@ footer {
   color: white;
 }
 
-ul.dropdown-content {
+ul#dropdown {
+  display: none;
   list-style-type: none;
-  background-color: #F5F7F8;
-  border: black;
+  background-color: black;
   border-width: 0.1em;
   position: absolute;
   z-index: 2;
   padding-left: 0;
+  padding: 1em;
   margin-top: 0;
   left: 48%;
+}
+
+ul#dropdown > a {
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+}
+
+ul#dropdown > a:hover {
+  color: #F4CE14;
+  transition: 0.5s;
+}
+
+ul#dropdown > li > a {
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+}
+
+ul#dropdown > li > a:hover {
+  color: #F4CE14;
+  transition: 0.5s;
 }

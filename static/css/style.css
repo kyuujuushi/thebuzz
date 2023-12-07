@@ -148,3 +148,47 @@ ul#dropdown > li > a:hover {
   color: #F4CE14;
   transition: 0.5s;
 }
+
+#share-buttons {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 10px ;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#share-buttons a i {
+font-size: 40px;
+}
+
+#share-buttons a {
+transition: 500ms;
+margin: 5px;
+}
+
+#share-buttons a:hover {
+transform: scale(1.1);
+}
+
+.facebook {
+color: #3b5998;
+
+}
+
+.twitter {
+color: #55acee;
+
+}
+
+.reddit {
+color: #cb2027;
+
+
+}
+
+.linkedin {
+color: #0077b5;
+}

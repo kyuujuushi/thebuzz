@@ -94,6 +94,27 @@ def render_events_page(page):
     cursor.execute(f"SELECT * FROM processed_events LIMIT {per_page} OFFSET {offset}")
     events = cursor.fetchall()
 #==================================================
+    # does this stupid thing gives me strings???? yes, yes it does :)
+    conn.row_factory = lambda cursor, row: row[0]
+
+    #this calls mk_cal to make a .ics file for each event
+    
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        SELECT event_name FROM processed_events
+        """
+    )
+    eventname = cursor.fetchall()
+    cursor.execute(
+        """
+        SELECT date FROM processed_events
+        """
+    )
+    eventdate = cursor.fetchall()
+    
+    for i in range(len(eventname)):
+        mk_cal(eventname[i],eventdate[i])
     conn.close()
 
     # calculate to show or not Previous Page button

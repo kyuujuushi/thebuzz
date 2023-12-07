@@ -15,7 +15,7 @@
     <link rel="icon" href="{{ url_for('static', filename='images/thiccmusBee.png') }}" type="image/x-icon">
 
     <!--Font Awesome CDN (For social Media sharing) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -90,24 +90,48 @@
     </div>
  </article>
 
- <div class="share-buttons">
-    <h3>Share</h3>
-        
-    <!-- reddit -->
-    <a class="reddit" target="blank"><i class="fab fa-reddit"></i></a>
+ <div id="share-buttons">
+
+    <!-- facebook -->
+    <a class="facebook" target="_blank"><i class="fab fa-facebook"></i></a>
     
     <!-- twitter -->
-    <a class="twitter" target="blank"><i class="fab fa-twitter"></i></a>
+    <a class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
     
     <!-- linkedin -->
-    <a class="linkedin" target="blank"><i class="fab fa-linkedin"></i></a>
+    <a class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
     
-    <!-- facebook -->
-    <a class="facebook" target="blank"><i class="fab fa-facebook"></i></a>
+    <!-- reddit -->
+    <a class="reddit" target="_blank"><i class="fab fa-reddit"></i></a>
+      
+</div>
 
-    
+<!-- The Javascript for sharing -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const link = encodeURI(window.location.href);
+      const msg = encodeURIComponent('Check out These Events');
+      const title = encodeURIComponent('Article or Post Title Here');
+      const hashtags = 'thebuzz,events';
   
-  </div>
+      const fb = document.querySelector('.facebook');
+      fb.href = `https://www.facebook.com/sharer.php?u=${link}`;
+  
+      const twitter = document.querySelector('.twitter');
+      twitter.href = `https://twitter.com/share?url=${link}&text=${msg}&hashtags=${encodeURIComponent(hashtags)}`;
+  
+      const linkedIn = document.querySelector('.linkedin');
+      linkedIn.href = `https://www.linkedin.com/shareArticle?url=${link}&title=${msg}`;
+  
+      const reddit = document.querySelector('.reddit');
+      reddit.href = `https://reddit.com/submit?url=${link}&title=${msg}`;
+    });
+</script>
+
+
+  
+
+</div>
 
  <!-- Footer -->
 <footer>

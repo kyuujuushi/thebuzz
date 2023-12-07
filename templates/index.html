@@ -17,6 +17,20 @@
     <!--Font Awesome CDN (For social Media sharing) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <script>
+        var clicked = 0
+        function isClicked () {
+            if (clicked == 0) {
+                document.getElementById("dropdown").style.display = "block";
+                clicked = 1
+            }
+            else if (clicked == 1){
+                document.getElementById("dropdown").style.display = "none";
+                clicked = 0
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -29,20 +43,19 @@
 
     <!-- Nav Bar -->
     <nav>
-        <a class="active" href="index.html">Home</a>
-        <a href="#" class="dropbtn">Filter</a>
-                <div class="dropdown-content">
-                    <a href="{{ url_for('index') }}">All</a>
-                    {% for price_range in price_ranges %}
-                    <a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a>
-                    {% endfor %}
-                </div>
-        <a href="{{ url_for('about')  }}">About Us</a>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="#" class="dropbtn" onclick="isClicked()">Filter</a>
+        <a href="{{ url_for('about') }}">About Us</a>
     </nav>
-    
+    <ul id="dropdown">
+        <a href="{{ url_for('index') }}">All</a>
+        {% for price_range in price_ranges %}
+        <li><a href="{{ url_for('filter_by_price', price_range=price_range, page=1) }}">{{ price_range }}</a></li>
+        {% endfor %}
+    </ul>
     <!-- Weather Widget -->
     <div>
-        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_1="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="beige">BOSTON WEATHER</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/42d36n71d06/boston/?unit=us" data-label_2="BOSTON" data-label_2="WEATHER" data-days="5" data-theme="pool_table">BOSTON WEATHER</a>
         <script>
             !function(d,s,id) {
                 var js,fjs=d.getElementsByTagName(s)[0];
